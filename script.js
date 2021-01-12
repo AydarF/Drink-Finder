@@ -55,6 +55,7 @@ function getDrinkById(drinkID) {
       const drink = data.drinks[0];
 
       addDrinkToDOM(drink);
+      scrollDown();
     });
 }
 
@@ -88,6 +89,15 @@ function addDrinkToDOM(drink) {
       </ul>
     </div>
   </div>`;
+}
+
+// Scroll down to the drink info
+function scrollDown() {
+  single_drinkEl.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+  single_drinkEl.scrollBottom += 16;
 }
 
 // Event listeners
