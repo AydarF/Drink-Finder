@@ -47,7 +47,20 @@ function searchDrink(e) {
     // Clear search text
     search.value = "";
   } else {
-    alert("Please enter a search term.");
+    if (!resultHeading.innerHTML == "") {
+      const resultHeadingSave = resultHeading.innerHTML;
+      resultHeading.innerHTML =
+        "<h3>Please don't leave the search box empty</h3>";
+      setTimeout(() => {
+        resultHeading.innerHTML = resultHeadingSave;
+      }, 2000);
+    } else {
+      resultHeading.innerHTML =
+        "<h3>Please don't leave the search box empty</h3>";
+      setTimeout(() => {
+        resultHeading.innerHTML = "";
+      }, 2000);
+    }
   }
 }
 
