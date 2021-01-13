@@ -21,7 +21,7 @@ function searchDrink(e) {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        resultHeading.innerHTML = `<h2>Search Results for '${term}':<h2>`;
+        resultHeading.innerHTML = `<h3>Search Results for '${term}':<h3>`;
 
         if (data.drinks === null) {
           resultHeading.innerHTML = `<p>There are no search results. Try again!</p>`;
@@ -75,7 +75,7 @@ function addDrinkToDOM(drink) {
 
   single_drinkEl.innerHTML = `
   <div class="single-drink">
-    <h1>${drink.strDrink}</h1>
+    <h3>${drink.strDrink}</h3>
     <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}"/>
     <div class="single-drink-info">
       ${drink.strCategory ? `<p>${drink.strCategory}</p>` : ""}
@@ -83,7 +83,7 @@ function addDrinkToDOM(drink) {
     </div>
     <div class="main">
       <p>${drink.strInstructions}</p>
-      <h3>Ingredients</h3>
+      <h4>Ingredients</h4>
       <ul>
         ${ingredients.map((ing) => `<li>${ing}</li>`).join("")}
       </ul>
