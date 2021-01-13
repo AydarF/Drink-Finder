@@ -10,7 +10,11 @@ function searchDrink(e) {
   e.preventDefault();
 
   // Clear a single drink
-  single_drinkEl.innerHTML = "";
+  // Also helps keep displaying a random drink after
+  // you click a search button with an empty input
+  if (!drinksEl.innerHTML == "") {
+    single_drinkEl.innerHTML = "";
+  }
 
   // Get search term
   const term = search.value;
@@ -59,6 +63,21 @@ function getDrinkById(drinkID) {
     });
 }
 
+// Fetch random drink from API
+function getRandomDrink() {
+  // Clear drinks and heading
+  drinksEl.innerHTML = "";
+  resultHeading.innerHTML = "";
+
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+    .then((res) => res.json())
+    .then((data) => {
+      const drink = data.drinks[0];
+
+      addDrinkToDOM(drink);
+    });
+}
+
 // Add drink to DOM
 function addDrinkToDOM(drink) {
   const ingredients = [];
@@ -102,6 +121,7 @@ function scrollDown() {
 
 // Event listeners
 submit.addEventListener("submit", searchDrink);
+random.addEventListener("click", getRandomDrink);
 
 drinksEl.addEventListener("click", (e) => {
   const drinkInfo = e.path.find((item) => {
