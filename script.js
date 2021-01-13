@@ -4,6 +4,7 @@ const random = document.getElementById("random");
 const drinksEl = document.getElementById("drinks");
 const resultHeading = document.getElementById("result-heading");
 const single_drinkEl = document.getElementById("single-drink");
+const btnScrollUp = document.getElementById("btnScrollUp");
 
 //Search Meal and fetch from API
 function searchDrink(e) {
@@ -132,12 +133,24 @@ function scrollDown() {
   single_drinkEl.scrollBottom += 16;
 }
 
+// Scroll to the top of the page
+function scrollUp() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+}
+
 // Event listeners
 submit.addEventListener("submit", searchDrink);
 random.addEventListener("click", getRandomDrink);
+btnScrollUp.addEventListener("click", scrollUp);
 
 drinksEl.addEventListener("click", (e) => {
-  const drinkInfo = e.path.find((item) => {
+  e.preventDefault();
+  const xpath = e.path || (e.composedPath && e.composedPath());
+  const drinkInfo = xpath.find((item) => {
     if (item.classList) {
       return item.classList.contains("drink-info");
     } else {
